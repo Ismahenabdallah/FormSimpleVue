@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project-Form</title>
+    <style>
+        #el{
+            text-align: left;
+            font-size: large;    
+            text-transform: capitalize;  
+           
+            background-clip: border-box; 
+
+ }      
+         
+        form{
+            height: 50vh;
+            width: 72vh;
+            border: 2px solid gray;
+            padding: 2%;
+
+
+ }
+         form .btn1 {
+            background-color: burlywood;
+            padding: 5%;
+           
+            
+        }
+        .show{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="el">
+        <div @mousemove="xCoordinate" :style="{ backgroundColor: `hsl(${x}, 80%, 50%)` }" class="movearea">
+			<h3>Move your mouse across the screen...</h3>
+			<p>x: {{x}}</p>
+		
+        <form action="" method="post ">
+        <table >
+            <tr>
+                <td>
+                    <label for="name"> name </label> 
+                </td>
+                <td>
+                    <input type="text"  name="" id="" v-model="name" placeholder="Name">
+                   
+                   
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="motdepasse "> password  </label>
+                </td>
+                <td>
+                  <!-- type="password"-->  <input :type="typefield"   placeholder="Password"
+                  name="" id="">
+                   <button class="show" @click.prevent="toggle()" v-text="bu">show</button>
+               <!-- <button class="show" @click="m =!m">{{ m? "hide" :"show"}}</button> -->
+            </td>            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="checkbox" name=" arabic" id=" arabic" value="arabic" v-model="checked">
+                    <label for="arabic">  arabic </label>
+                    <input type="checkbox" name="french" id="french" value="french" v-model="checked">
+                    <label for="french">  french </label>
+                    <input type="checkbox" name="english" id="english" value="english" v-model="checked">
+                    <label for="english"> english </label>
+                </td>   
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="radio" name="woman" id="woman" value="woman" v-model="r">
+                    <label for="woman"> woman </label>
+                    <input type="radio" name="man" id="man" value="man" v-model="r">
+                    <label for="man">  man  </label>
+                    
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <select v-model="selected">
+                        <option  value="">Please select one</option>
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><button class="btn1"  @click.prevent="add" :disabled="!name">submit</button></td>
+                <td> <button class="btn1" @click="deleteall()">delete </button></td>
+            </tr>
+        </table>
+       
+</form>
+<div class="para">
+    <p> my name is :  {{name }}</p>
+    <p> list of  languages :  {{ checked}}</p>
+
+    <p> gendred : {{ r }}</p>
+   <p> selected : {{ selected  }}</p>
+</div>
+</div>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+			el: "#el",
+            
+			data: {
+                x: 0,
+                name:null ,
+                checked:[],
+                r :" ",
+                selected :" ",
+                typefield: "password",
+					bu: "show",
+                    m:false
+			},
+			methods: {
+				xCoordinate(e) {
+					this.x = e.clientX
+				},
+                toggle: function () {
+
+						if (this.typefield === "password") {
+							this.typefield = "text"
+							this.bu = "hide"
+						}
+						else {
+							this.typefield = "password"
+							this.bu = "show"
+						}}
+            /*    deleteall() {
+					this.checked= [];
+				}*/
+			}
+		})
+</script>
+</html>
